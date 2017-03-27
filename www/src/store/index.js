@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 let api = axios.create({
-  baseURL: 'http://localhost:3000/api/',
+  baseURL: 'http://localhost:3001/api/',
   timeout: 2000,
   withCredentials: true
 })
@@ -11,6 +11,7 @@ let state = {
   // from kanban
     userBoards: [],
     sharedBoards: [],
+     error: {},
  // end kanban
   user: {},
   myVaults: {},
@@ -154,6 +155,7 @@ export default {
             api.post('boards', board)
                 .then(res => {
                     this.getUserBoards()
+                    console.log('created board?', board)
                 })
                 .catch(handleError)
         },

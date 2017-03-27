@@ -7,7 +7,7 @@ export default {
     path: '/userboards',
     reqType: 'get',
     method(req, res, next){
-      let action = 'Find User Boards'
+      let action = 'Find User Keeps'
       Boards.find({userId: req.session.uid})
         .then(boards => {
           res.send(handleResponse(action, boards))
@@ -20,7 +20,7 @@ export default {
     path: '/sharedboards',
     reqType: 'get',
     method(req, res, next){
-      let action = 'Find Shared Boards'
+      let action = 'Find Shared Keeps'
       Boards.find({collaborators: { $in: [req.session.uid]}})
         .then(boards => {
           res.send(handleResponse(action, boards))

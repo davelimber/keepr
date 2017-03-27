@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>Welcome to Keepr</h1>
     <p>Get Started</p>
-    <ul>
+    <!-- <ul>
       <li>
         <router-link to="/login">Login</router-link>
       </li>
@@ -10,15 +10,18 @@
         <router-link to="/register">Register</router-link>
       </li>
     </ul>
-    <hr>
-        <div v-if="!this.$root.$data.store.state.user._id">
-      <div class="parallax-container">
+    <hr>-->
+
+
+
+    <div v-if="!this.$root.$data.store.state.user._id">
+      <!--<div class="parallax-container">
         <div class="parallax"></div>
-      </div>
+      </div>-->
       <div class="section white">
         <div class="row container">
-          <h3 class="header">Learn Kanban</h3>
-          <div class="col s4">
+          <h3 class="header">Get Keeps!</h3>
+          <!--<div class="col s4">
             <h5><i class="fa fa-compass"></i> Stay on Target</h5>
             <p>Have all of your tasks and lists in one place, so that you can make sure to stay on task and on target!</p>
           </div>
@@ -32,26 +35,25 @@
           </div>
           <hr>
           <h5>Kanban (看板)</h5>
-          <p class="grey-text text-darken-3 lighten-3">Based on a Japanese principle to keep a production system running as a whole, kanban is truly the ultimate when it comes to queue limitation and dividing up tasks from the whole project. Break things down to watch them build back up into a fully functional product.</p>
+          <p class="grey-text text-darken-3 lighten-3">Based on a Japanese principle to keep a production system running as a whole, kanban is truly the ultimate when
+            it comes to queue limitation and dividing up tasks from the whole project. Break things down to watch them build
+            back up into a fully functional product.</p>-->
         </div>
       </div>
-        <div class="parallax-container">
-          <div class="bgimg-2"></div>
-        </div>
       <!--<div class="parallax-container">
-        <div class="parallax">
-          <img src="../assets/images/typewriter.jpg">
-        </div>
-      </div>-->
+          <div class="bgimg-2"></div>
+        </div>-->
     </div>
 
     <!-- USER AND SHARED BOARDS WHEN LOGGED IN -->
-    <div v-if="this.$root.$data.store.state.user._id">
-      <h3>Your Boards</h3>
 
-      <button v-if="!showBoardForm" @click="triggerBoardForm" class="waves-effect waves-light btn">Add Board</button>
+
+    <div v-if="this.$root.$data.store.state.user._id">
+      <h3>Your Vault</h3>
+
+      <button v-if="!showBoardForm" @click="triggerBoardForm" class="waves-effect waves-light btn">Add Vault</button>
       <div class="container" v-if="showBoardForm">
-        <h5>Add a Board </h5>
+        <h5>Add a Vault </h5>
         <form class="row" @submit.prevent="addBoard">
           <div class="col s12 input-field">
             <input type="text" id="boardName" v-model="boardName" required>
@@ -61,7 +63,7 @@
             <textarea class="materialize-textarea" id="boardDesc" cols="30" rows="10" v-model="boardDesc"></textarea>
             <label for="boardDesc">Description</label>
           </div>
-          <button class="waves-effect waves-teal btn" type="submit">Add Board</button>
+          <button class="waves-effect waves-teal btn" type="submit">Add Vault</button>
           <button @click="triggerBoardForm" class="waves-effect waves-teal btn-flat"><i class="fa fa-times"></i></button>
         </form>
       </div>
@@ -81,22 +83,33 @@
           </div>
         </div>
       </div>
-      <!-- USER AND SHARED BOARDS -->
-      <h3>Shared Boards</h3>
-      <div class="row">
-        <div v-for="sharedboard in sharedBoards" class="col s12 m3">
-          <div class="card hoverable blue-grey darken-1">
-            <router-link :to="'/boards/' + sharedboard._id" @click="getBoard(sharedboard._id)">
-              <div class="card-content white-text">
-                <span class="card-title">{{ sharedboard.name }}</span>
-                <p>{{ sharedboard.description }}</p>
-              </div>
-            </router-link>
-          </div>
+    </div>
+
+    <!-- USER AND SHARED BOARDS -->
+
+
+    <h3>Shared Keeps</h3>
+    <div class="row">
+      <div v-for="sharedBoard in sharedBoards" class="col s12 m3">
+        <div class="card hoverable blue-grey darken-1" @click="getBoard(sharedboard._id)">
+{{ sharedBoard.title }}
+
+          <!--Pulling data from DB-->
+          <!--<router-link :to="'/boards/' + sharedboard._id" @click="getBoard(sharedboard._id)">
+            <div class="card-content white-text">
+              <span class="card-title">        
+                {{ sharedboard.name }}
+                </span>
+              <p>{{ sharedboard.description }}</p>
+            </div>
+          </router-link>-->
         </div>
       </div>
-  </div>
     </div>
+  </div>
+  </div>
+
+  </div>
 </template>
 
 <script>
@@ -109,12 +122,13 @@
         showBoardForm: false
       }
     },
-        computed: {
+    computed: {
       userboards() {
-        return this.$root.$data.store.state.userBoards
+        return this.$root.$data.store.state.myVaults
       },
+
       sharedBoards() {
-        return this.$root.$data.store.state.sharedBoards
+        return this.$root.$data.store.state.keeps
       }
     },
     methods: {
@@ -129,6 +143,7 @@
           name: this.boardName,
           description: this.boardDesc
         })
+        console.log(this.boardName)
         this.showBoardForm = false
         this.boardName = ''
         this.boardDesc = ''
