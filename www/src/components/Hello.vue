@@ -22,13 +22,13 @@
           <h3 class="header">Get Keeps!</h3>
 
           <!--show keeps for non logged in users-->
-    <div class="row">
-      <div v-for="sharedBoard in sharedBoards" class="col s12 m3">
-        <div class="card hoverable blue-grey darken-1" @click="getBoard(sharedboard._id)">
-{{ sharedBoard.title }}
+          <div class="row">
+            <div v-for="sharedBoard in sharedBoards" class="col s12 m3">
+              <div class="card hoverable blue-grey darken-1" @click="getBoard(sharedboard._id)">
+                {{ sharedBoard.title }}
 
-          <!--Pulling data from DB-->
-          <!--<router-link :to="'/boards/' + sharedboard._id" @click="getBoard(sharedboard._id)">
+                <!--Pulling data from DB-->
+                <!--<router-link :to="'/boards/' + sharedboard._id" @click="getBoard(sharedboard._id)">
             <div class="card-content white-text">
               <span class="card-title">        
                 {{ sharedboard.name }}
@@ -36,9 +36,9 @@
               <p>{{ sharedboard.description }}</p>
             </div>
           </router-link>-->
-        </div>
-      </div>
-    </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <!--<div class="parallax-container">
@@ -89,14 +89,33 @@
     <!-- USER AND SHARED BOARDS -->
 
     <div v-if="this.$root.$data.store.state.user._id">
-    <h3>Shared Keeps</h3>
-    <div class="row">
-      <div v-for="sharedBoard in sharedBoards" class="col s12 m3">
-        <div class="card hoverable blue-grey darken-1" @click="getBoard(sharedboard._id)">
-{{ sharedBoard.title }}
-
-          <!--Pulling data from DB-->
-          <!--<router-link :to="'/boards/' + sharedboard._id" @click="getBoard(sharedboard._id)">
+      <h3>Shared Keeps</h3>
+      <div class="row">
+        <div v-for="sharedBoard in sharedBoards" class="col s12 m3">
+          <div class="card hoverable blue-grey darken-1" @click="getBoard(sharedboard._id)">
+            <!--{{ sharedBoard.title }}-->
+            <div class="row thumbnails-row">
+              <div class="col xs-12 col-sm-6 col-md-4">
+                <a href="" target="_blank">
+                  <div class="thumbnail">
+                    <img :src="sharedBoard.imgUrl" alt="">
+                    <div class="caption">
+                      <h3>{{ sharedBoard.title }}</h3>
+                      <p></p>
+                      <p>{{ sharedBoard.body }}</p>
+                      <a href="" target="_blank">
+                        <p><span class="project-link dotted-underline">See it live</span></p>
+                      </a>
+                      <a href="" target="_blank">
+                        <p><span class="project-link dotted-underline">Source Code</span></p>
+                      </a>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div cl <!--Pulling data from DB-->
+              <!--<router-link :to="'/boards/' + sharedboard._id" @click="getBoard(sharedboard._id)">
             <div class="card-content white-text">
               <span class="card-title">        
                 {{ sharedboard.name }}
@@ -104,11 +123,11 @@
               <p>{{ sharedboard.description }}</p>
             </div>
           </router-link>-->
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
 </template>
 
 <script>
