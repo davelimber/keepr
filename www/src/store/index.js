@@ -11,6 +11,9 @@ let state = {
     // from kanban
     userBoards: [],
     sharedBoards: [],
+    activeBoard: {},
+    activeLists: [],
+    activeTasks: [],
     error: {},
     // end kanban
     user: {},
@@ -154,8 +157,9 @@ export default {
         createBoard(board) {
             api.post('boards', board)
                 .then(res => {
-                    this.getUserBoards()
                     console.log('created board?', board)
+                    this.getUserBoards()
+
                 })
                 .catch(handleError)
         },

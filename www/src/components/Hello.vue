@@ -123,7 +123,7 @@
     },
     computed: {
       userboards() {
-        return this.$root.$data.store.state.myVaults
+        return this.$root.$data.store.state.userBoards
       },
 
       sharedBoards() {
