@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
-    <h1>Welcome to Keepr</h1>
-    <p>Get Started</p>
+
     <!-- <ul>
       <li>
         <router-link to="/login">Login</router-link>
@@ -21,23 +20,25 @@
       <div class="section white">
         <div class="row container">
           <h3 class="header">Get Keeps!</h3>
-          <!--<div class="col s4">
-            <h5><i class="fa fa-compass"></i> Stay on Target</h5>
-            <p>Have all of your tasks and lists in one place, so that you can make sure to stay on task and on target!</p>
-          </div>
-          <div class="col s4">
-            <h5><i class="fa fa-keyboard-o"></i> Increase Productivity</h5>
-            <p>By using Kanban to keep your team on task and on target, you'll find that you drastically increase productivity!</p>
-          </div>
-          <div class="col s4">
-            <h5><i class="fa fa-globe"></i> Reducing Carbon Footprint</h5>
-            <p>Because we use a recycle icon rather than a trash can, we are more Earth-friendly and reduce the carbon footprint.</p>
-          </div>
-          <hr>
-          <h5>Kanban (看板)</h5>
-          <p class="grey-text text-darken-3 lighten-3">Based on a Japanese principle to keep a production system running as a whole, kanban is truly the ultimate when
-            it comes to queue limitation and dividing up tasks from the whole project. Break things down to watch them build
-            back up into a fully functional product.</p>-->
+
+          <!--show keeps for non logged in users-->
+    <div class="row">
+      <div v-for="sharedBoard in sharedBoards" class="col s12 m3">
+        <div class="card hoverable blue-grey darken-1" @click="getBoard(sharedboard._id)">
+{{ sharedBoard.title }}
+
+          <!--Pulling data from DB-->
+          <!--<router-link :to="'/boards/' + sharedboard._id" @click="getBoard(sharedboard._id)">
+            <div class="card-content white-text">
+              <span class="card-title">        
+                {{ sharedboard.name }}
+                </span>
+              <p>{{ sharedboard.description }}</p>
+            </div>
+          </router-link>-->
+        </div>
+      </div>
+    </div>
         </div>
       </div>
       <!--<div class="parallax-container">
@@ -87,7 +88,7 @@
 
     <!-- USER AND SHARED BOARDS -->
 
-
+    <div v-if="this.$root.$data.store.state.user._id">
     <h3>Shared Keeps</h3>
     <div class="row">
       <div v-for="sharedBoard in sharedBoards" class="col s12 m3">
@@ -107,8 +108,6 @@
       </div>
     </div>
   </div>
-  </div>
-
   </div>
 </template>
 

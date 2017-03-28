@@ -44,7 +44,7 @@ function API(model, schema) {
 
   function create(req, res, next) {
     var action = actions.create
-
+console.log('in base api create board')
     let model = new schema(req.body)
     model.creatorId = req.session.uid
     
