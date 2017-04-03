@@ -32,20 +32,13 @@
 
 
 <script>
-    import userboardService from '../services/userboard-service'
-    // import
-
     export default {
         name: 'login',
         data() {
             return {
-                // Need to review
-                // registrationMessage: '',
-                // username: '',
                 email: '',
                 password: '',
                 showPass: false
-                // user: {}
             }
         },
         methods: {

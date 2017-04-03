@@ -7,34 +7,22 @@ const actions = {
 }
 
 const models = {
- board: {
-    name: 'Board',
-    endpoint: 'boards',
-    useCustomRoutes: true
-  },
-  list: {
-    name: 'List',
-    endpoint: 'lists'
-  },
   user: {
     name: 'User',
     endpoint: 'users',
     preventDefaultApi: true,
     useCustomRoutes: true
   },
-  task: {
-    name: 'Task',
-    endpoint: 'tasks',
+    vault: {
+    name: 'Vault',
+    endpoint: 'vaults',
     useCustomRoutes: true
   },
-  comment: {
-    name: 'Comment',
-    endpoint: 'comments'
+  keep: {
+    name: 'Keep',
+    endpoint: 'keeps',
+    useCustomRoutes: true
   },
-  team: {
-    name: 'Team',
-    endpoint: 'teams'
-  }
 }
 
 

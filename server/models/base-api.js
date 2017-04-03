@@ -44,8 +44,7 @@ function API(model, schema) {
 
   function create(req, res, next) {
     var action = actions.create
-console.log('in base api create board')
-console.log(req.session.uid)
+console.log('in create function - api')
     let model = new schema(req.body)
     model.userId = req.session.uid
     
@@ -54,7 +53,6 @@ console.log(req.session.uid)
         return res.send(handleResponse(action, data))
       })
       .catch(error => {
-        console.log('in error catch at create')
         return next(handleResponse(action, null, error))
       })
   }

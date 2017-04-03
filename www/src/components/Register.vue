@@ -1,6 +1,5 @@
 <template>
     <div class="spacer">
-
         <h1 class="text-center"> Register as a new user</h1>
         <div class="container">
             <div class="row">
@@ -45,43 +44,18 @@
 
 
 <script>
-    import userboardService from '../services/userboard-service'
-    // import
-
     export default {
         name: 'register',
         data() {
             return {
-                // Need to review
-                // registrationMessage: '',
-                name: '',
+                 name: '',
                 email: '',
                 password: '',
                 confirmPassword: '',
-                showPass: false
-                // user: {}
+                showPass: false         
             }
         },
         methods: {
-            // Need to reveiw 
-
-            // register: function () {
-            //     this.$root.$data.store.actions.registerUser(this.username, this.email, this.password).then(response => {
-
-            //         this.user = response.data.data
-            //         console.log(this.user.email)
-            //         if (this.user.error) {
-            //             return console.log(this.user.error)
-            //         }
-            //         this.username = ''
-            //         this.email = ''
-            //         this.password = ''
-            //         router.push('home')
-            //     })
-            //         .catch(err => {
-            //             console.log(err)
-            //         })
-            // },
             registerUser: function () {
                 if (this.password == this.confirmPassword) {
                     this.$root.$data.store.actions.register(this.email, this.name, this.password);
@@ -89,7 +63,7 @@
                     this.password = '';
                     this.name = '';
                     this.confirmPassword = '';
-                    this.$router.push({path: '/'})
+                    this.$router.push({ path: '/' })
                 } else {
                     this.password = '';
                     this.confirmPassword = '';

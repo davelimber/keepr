@@ -2,7 +2,7 @@
     <div class="navbar-fixed">
         <nav class="blue darken-4" role="navigation">
             <div class="nav-wrapper">
-                <a id="logo-container" href="#" class="brand-logo center"><img src="../assets/logo.jpg" style="height: 60px; vertical-align: center; margin-top: -7px;"> Keepr! </a>
+                <a id="logo-container" href="#" class="brand-logo center"><img src="../assets/logo.jpg" style="height: 60px; vertical-align: center; margin-top: -7px;"> World's Uglist Keepr App! </a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars"></i></a>
                 <ul v-if="!user._id" class="right hide-on-med-and-down">
                     <li>
@@ -28,14 +28,7 @@
                         <router-link to="/register">Register</router-link>
                     </li>
                 </ul>
-                <!--<ul v-if="user._id" id="mobile-demo" class="side-nav">
-            <li>
-                Welcome, {{ this.$root.user.name }}!
-            </li>
-            <li>
-                Logout
-            </li>
-        </ul>-->
+    
             </div>
         </nav>
     </div>
