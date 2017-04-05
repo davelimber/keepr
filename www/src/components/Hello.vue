@@ -144,6 +144,7 @@
     },
     mounted() {
       this.$root.$data.store.actions.getPublicKeeps();
+      this.$root.$data.store.actions.getUserKeeps();
     },
     computed: {
       uservaults(vaults) {

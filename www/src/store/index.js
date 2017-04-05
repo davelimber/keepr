@@ -148,9 +148,9 @@ export default {
         })
     },  
     getUserKeeps() {
-      api('mykeeps')
+      api('userkeeps')
         .then(res => {
-          console.log(res.data.data)
+          console.log('the user keeps', res.data.data)
           state.myKeeps = res.data.data
           // state.activeTasks = res.data.data.tasks
         })
