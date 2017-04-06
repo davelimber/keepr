@@ -45,25 +45,25 @@ export default {
                 })
         }
     },
-    removeKeepFromVault: {
-        path: '/vault/:id/removeKeep',
-        reqType: 'put',
-        method(req, res, next) {
-            let action = 'Remove Keep from Vault'
-            Vaults.findById(req.params.id)
-                .then(vault => {
-                    let index = vault.keeps.indexOf(req.body.keepId)
-                    vault.keeps.splice(index, 1)
-                    vault.save()
-                        .then(savedVault => {
-                            res.send(handleResponse(action, savedVault))
-                        })
-                        .catch(error => {
-                            return next(handleResponse(action, null, error))
-                        })
-                })
-        }
-    },
+    // removeKeepFromVault: {
+    //     path: '/vault/:id/removeKeep',
+    //     reqType: 'put',
+    //     method(req, res, next) {
+    //         let action = 'Remove Keep from Vault'
+    //         Vaults.findById(req.params.id)
+    //             .then(vault => {
+    //                 let index = vault.keeps.indexOf(req.body.keepId)
+    //                 vault.keeps.splice(index, 1)
+    //                 vault.save()
+    //                     .then(savedVault => {
+    //                         res.send(handleResponse(action, savedVault))
+    //                     })
+    //                     .catch(error => {
+    //                         return next(handleResponse(action, null, error))
+    //                     })
+    //             })
+    //     }
+    // },
     keepToNewVault: {
         path: '/keeptonewvault/:id',
         reqType: 'put',

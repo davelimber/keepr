@@ -8,9 +8,13 @@ export default {
     reqType: 'get',
     method(req, res, next) {
       let action = 'Find Keeps by Vault'
-      Lists.find({ vaultId: req.params.id })
-        .then(keeps => {
-          res.send(handleResponse(action, keeps))
+      Vaults.findById(req.params.id)
+      .populate('keeps')
+      
+        .then(vault => {
+            
+
+          res.send(handleResponse(action, vault))
         }).catch(error => {
           return next(handleResponse(action, null, error))
         })
@@ -20,7 +24,7 @@ export default {
     path: '/vault/:id/removekeep',
     reqType: 'put',
     method(req, res, next) {
-      let action = 'remvoe the keep from a vault'
+      let action = 'remove the keep from a vault'
       Vaults.findById(req.params.id)
         .then(vault => {
           let index = vault.keeps.indexOf(req.body.keepId)

@@ -9,10 +9,12 @@
         <!--{{ keep }}-->
 
         <div v-for="keep in activeVault.keeps" class="col s6 m4">
-            <div class="right-align">
-                <a @click="removeKeep(keep)"><i class="fa fa-times">remove keep</i></a>
+            <div>
+                <!--<div>-->
+               {{ keep.title }} 
+               <a @click="removeKeep(keep._id)"><i class="fa fa-times">remove keep</i></a>
             </div>
-            <keep :keep="keep"></keep>
+          
         </div>
 
         <!--<button @click="removeKeep(keep)"><i class="fa fa-times"> </i></button>-->
@@ -35,8 +37,8 @@
         data() {
             return {
                 vault: [],
-                keepName: '',
-                keepDesc: '',
+                keep: {},
+                myKeeps: {},
                 showKeepForm: false,
                 url: '',
                 tags: '',
@@ -46,11 +48,14 @@
         },
         mounted() {
             this.$root.$data.store.actions.setActiveVault(this.$route.params.id)
-            // this.$root.$data.store.actions.getUserKeeps();
+            this.$root.$data.store.actions.getKeeps(this.$route.params.id);
         },
         computed: {
             activeVault() {
                 return this.$root.$data.store.state.activeVault
+            },
+            myKeeps () {
+                return this.$root.$data.store.state.activeKeeps
             },
         },
         methods: {
@@ -58,8 +63,10 @@
                 console.log('get vault by vaultId')
                 console.log(vaultId)
             },
-            removeKeep: function () {
-                this.$route.data.store.actions.removeKeepFromVault(this.$route.params.id, keep)
+            removeKeep: function (keepId) {
+                console.log(this.activeVault._id)
+                console.log(keepId)
+                 this.$root.$data.store.actions.removeKeepFromVault(this.activeVault._id, keepId)
             },
 
             routeHome: function () {

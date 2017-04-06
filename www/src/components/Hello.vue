@@ -8,9 +8,19 @@
           <!--show keeps for non logged in users-->
           <div class="row">
             <div v-for="sharedKeep in sharedKeeps" class="col s12 m3">
-              <div class="card hoverable blue-grey darken-1" @click="getVault(sharedKeeps._id)">
-                {{ sharedKeep.title }}
-
+              <div class="card hoverable blue-grey darken-1">
+                <div class="row thumbnails-row">
+                  <div class="col xs-12 col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                      <img :src="sharedKeep.imageUrl" alt="" height="150" width="150">
+                      <div class="caption">
+                        <h3>{{ sharedKeep.title }}</h3>
+                        <p>{{ sharedKeep.articleLink }}</p>
+                        <button v-if="showKeepToVaultForm" @click="showKeepToVault(sharedKeep)" class="waves-effect waves-light btn">Save Keep!</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -160,7 +170,7 @@
       getVault: function (x) {
         console.log(x)
         this.$root.$data.store.actions.getKeeps(x)
-      
+
         // console.log(vaultId)
       },
       deleteVault: function (vault) {

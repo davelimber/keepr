@@ -140,13 +140,13 @@ export default {
         .catch(handleError)
     },
     getKeeps(id) {
-      api('vaults/' + id + '/data')
+      api('vaults/' + id + '/keeps')
         .then(res => {
           console.log(res.data.data)
-          state.activeKeeps = res.data.data.keeps
+          state.activeVault.keeps = res.data.data.keeps
           // state.activeTasks = res.data.data.tasks
         })
-    },  
+    },
     getUserKeeps() {
       api('userkeeps')
         .then(res => {
@@ -155,13 +155,13 @@ export default {
           // state.activeTasks = res.data.data.tasks
         })
         .catch(handleError)
-       },  
+    },
     getPublicKeeps() {
       api('publickeeps')
-      .then(res => {
-        state.keeps = res.data.data
-      })
-       .catch(handleError)
+        .then(res => {
+          state.keeps = res.data.data
+        })
+        .catch(handleError)
     },
     createVault(vault) {
       api.post('vaults', vault)
@@ -170,10 +170,10 @@ export default {
         })
         .catch(handleError)
     },
-        setActiveVault(vaultId) {
+    setActiveVault(vaultId) {
       api('vaults/' + vaultId)
         .then(res => {
-          state.activeVault= res.data.data
+          state.activeVault = res.data.data
         })
         .catch(handleError)
     },
@@ -199,10 +199,11 @@ export default {
         })
         .catch(handleError)
     },
-        removeKeepFromVault(vaultId, keepId) {
+    removeKeepFromVault(vaultId, keepId) {
+      console.log("Helloo!!!")
       api.put('vault/' + vaultId + '/removekeep', keepId)
         .then(res => {
-          // this.getKeeps(vaultId)
+          this.setActiveVault(vaultId);
         })
         .catch(handleError)
     },
