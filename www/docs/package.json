@@ -1,0 +1,10 @@
+{
+ "name": "keepr",
+ "version": "1.0.0",
+ "description": "keepr app",
+ "author": "Dave Limber",
+ "private": true,
+ "scripts": {
+   "postinstall": "npm install express"
+ }
+}
